@@ -111,7 +111,7 @@ class mcollective (
   if $sshkey_server_learn_public_keys {
     $sshkey_server_publickey_dir = pick($sshkey_server_publickey_dir,"${confdir}/sshkey_pubkeys")
   }
-  if $sshkey_client_publickey_dir {
+  if $sshkey_client_learn_public_keys {
     $sshkey_client_publickey_dir = pick($sshkey_client_publickey_dir,"${confdir}/sshkey_pubkeys")
   }
   
