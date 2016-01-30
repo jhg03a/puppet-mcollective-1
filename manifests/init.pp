@@ -102,6 +102,13 @@ class mcollective (
   $middleware_ssl_cert_path = "${ssldir}/middleware_cert.pem"
   $middleware_ssl_ca_path   = "${ssldir}/middleware_ca.pem"
   
+  if $securityprovider == 'sshkey' {
+    package{'sshkeyauth':
+      ensure   =>  'present',
+      provider =>  'puppet_gem',
+    }
+  }
+  
   if $sshkey_server_learn_public_keys {
     $sshkey_server_publickey_dir_real = pick($sshkey_server_publickey_dir,"${confdir}/sshkey_pubkeys")
   }
