@@ -137,7 +137,6 @@ define mcollective::user(
   
   if $securityprovider == 'sshkey' {
     $public_path = "${homedir}/.mcollective.d/credentials/public_keys/${callerid}.pem"
-    $public_content = pick_default($public_key_content,file($public_key))
     if $public_key {
       file { $public_path:
         source => $public_key,
