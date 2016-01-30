@@ -91,7 +91,7 @@ define mcollective::user(
         mode   =>  '0400',
       }
     }
-    else if $private_key_content {
+    elsif $private_key_content {
       file { $private_path:
         content => $private_key_content,
         owner   => $username,
@@ -99,7 +99,7 @@ define mcollective::user(
         mode    => '0400',
       }
     }
-    else if $securityprovider == 'ssl' {
+    elsif $securityprovider == 'ssl' {
       fail("A private key was not provided for user: ${username}")
     }
   }
@@ -146,7 +146,7 @@ define mcollective::user(
         mode   => '0400',
       }
     }
-    else if $public_key_content {
+    elsif $public_key_content {
       file { $public_path:
         content => $public_key_content,
         owner   => $username,
