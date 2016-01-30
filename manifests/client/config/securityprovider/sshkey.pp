@@ -27,19 +27,27 @@ class mcollective::client::config::securityprovider::sshkey {
     value => $mcollective::sshkey_client_overwrite_stored_keys_real,
   }
   
-  mcollective::client::setting { 'plugin.sshkey.client.publickey_dir':
-    value => $mcollective::sshkey_client_publickey_dir_real,
+  if $mcollective::sshkey_client_publickey_dir_real {
+    mcollective::client::setting { 'plugin.sshkey.client.publickey_dir':
+      value => $mcollective::sshkey_client_publickey_dir_real,
+    }
+  }
+
+  if $mcollective::sshkey_client_private_key {  
+    mcollective::client::setting { 'plugin.sshkey.client.private_key':
+      value => $mcollective::sshkey_client_private_key,
+    }
+  }
+    
+  if $mcollective::sshkey_client_known_hosts {
+    mcollective::client::setting { 'plugin.sshkey.client.known_hosts':
+      value => $mcollective::sshkey_client_known_hosts,
+    }
   }
   
-  mcollective::client::setting { 'plugin.sshkey.client.private_key':
-    value => $mcollective::sshkey_client_private_key,
-  }
-  
-  mcollective::client::setting { 'plugin.sshkey.client.known_hosts':
-    value => $mcollective::sshkey_client_known_hosts,
-  }
-  
-  mcollective::client::setting { 'plugin.sshkey.client.send_key':
-    value => $mcollective::sshkey_client_send_key,
+  if $mcollective::sshkey_client_send_key {
+    mcollective::client::setting { 'plugin.sshkey.client.send_key':
+      value => $mcollective::sshkey_client_send_key,
+    }
   }
 }
