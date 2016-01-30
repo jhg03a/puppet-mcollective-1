@@ -64,7 +64,7 @@ define mcollective::user(
     }
 
     $private_path = "${homedir}/.mcollective.d/credentials/private_keys/${callerid}.pem"
-    $private_content = pick($private_key_content,"${homedir}/.mcollective.d/credentials/private_keys/${callerid}.pem")
+    $private_content = pick($private_key_content,file($private_key))
     file { $private_path:
       content => $private_content,
       owner   => $username,
@@ -74,7 +74,7 @@ define mcollective::user(
   }
 
   if $securityprovider == 'ssl' {
-    $cert_content = pick($certificate_content, file("${homedir}/.mcollective.d/credentials/certs/${callerid}.pem"))
+    $cert_content = pick($certificate_content, file($certificate))
     file { "${homedir}/.mcollective.d/credentials/certs/${callerid}.pem":
       content => $cert_content,
       owner   => $username,
