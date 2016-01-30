@@ -20,11 +20,11 @@ class mcollective::server::config::securityprovider::sshkey {
   # https://github.com/puppetlabs/mcollective-sshkey-security/blob/master/security/sshkey.rb
 
   mcollective::server::setting { 'plugin.sshkey.server.learn_public_keys':
-    value => $mcollective::sshkey_server_learn_public_keys,
+    value => $mcollective::sshkey_server_learn_public_keys_real,
   }
 
   mcollective::server::setting { 'plugin.sshkey.server.overwrite_stored_keys':
-    value => $mcollective::sshkey_server_overwrite_stored_keys,
+    value => $mcollective::sshkey_server_overwrite_stored_keys_real,
   }
   
   mcollective::server::setting { 'plugin.sshkey.server.publickey_dir':

@@ -116,10 +116,10 @@ class mcollective (
   }
   
   # Convert boolean to integer since sshkey module requires it in that format
-  $sshkey_server_learn_public_keys      = bool2num($sshkey_server_learn_public_keys)
-  $sshkey_server_overwrite_stored_keys  = bool2num($sshkey_server_overwrite_stored_keys)
-  $sshkey_client_learn_public_keys      = bool2num($sshkey_client_learn_public_keys)
-  $sshkey_client_overwrite_stored_keys  = bool2num($sshkey_client_overwrite_stored_keys)
+  $sshkey_server_learn_public_keys_real     = bool2num($sshkey_server_learn_public_keys)
+  $sshkey_server_overwrite_stored_keys_real = bool2num($sshkey_server_overwrite_stored_keys)
+  $sshkey_client_learn_public_keys_real     = bool2num($sshkey_client_learn_public_keys)
+  $sshkey_client_overwrite_stored_keys_real = bool2num($sshkey_client_overwrite_stored_keys)
 
   if $client or $server {
     contain mcollective::common
