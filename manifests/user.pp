@@ -220,7 +220,7 @@ define mcollective::user(
     mcollective::user::connector { $connectors:
       username       => $username,
       callerid       => $callerid,
-      homedir_real   => $homedir_real,
+      homedir        => $homedir_real,
       connector      => $connector,
       middleware_ssl => $middleware_ssl,
       order          => '60',
