@@ -9,11 +9,13 @@ class mcollective::server::config::securityprovider::sshkey {
     'provider' =>  'puppet_gem', }
   )
   
-  # In the event the node is both a server and a client and they share a public key directory
-  ensure_resource('file', $mcollective::sshkey_server_publickey_dir {
-    'ensure' =>  'directory',
-    'mode'   =>  '0755', }
-  )
+  if $mcollective::sshkey_server_learn_public_keys {
+    # In the event the node is both a server and a client and they share a public key directory
+    ensure_resource('file', $mcollective::sshkey_server_publickey_dir_real {
+      'ensure' =>  'directory',
+      'mode'   =>  '0755', }
+    )
+  }
 
   # https://github.com/puppetlabs/mcollective-sshkey-security/blob/master/security/sshkey.rb
 
@@ -26,7 +28,7 @@ class mcollective::server::config::securityprovider::sshkey {
   }
   
   mcollective::server::setting { 'plugin.sshkey.server.publickey_dir':
-    value => $mcollective::sshkey_server_publickey_dir,
+    value => $mcollective::sshkey_server_publickey_dir_real,
   }
   
   mcollective::server::setting { 'plugin.sshkey.server.private_key':
