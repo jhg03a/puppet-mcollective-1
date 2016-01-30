@@ -4,7 +4,7 @@ class mcollective::client::config::securityprovider::sshkey {
     fail("Use of private class ${name} by ${caller_module_name}")
   }
   
-  ensure_package('sshkeyauth', {
+  ensure_packages('sshkeyauth', {
     'ensure'   =>  'present',
     'provider' =>  'puppet_gem', }
   )
