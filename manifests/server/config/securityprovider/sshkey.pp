@@ -11,7 +11,7 @@ class mcollective::server::config::securityprovider::sshkey {
   
   if $mcollective::sshkey_server_learn_public_keys {
     # In the event the node is both a server and a client and they share a public key directory
-    ensure_resource('file', $mcollective::sshkey_server_publickey_dir_real {
+    ensure_resource('file', $mcollective::sshkey_server_publickey_dir_real, {
       'ensure' =>  'directory',
       'mode'   =>  '0755', }
     )
