@@ -5,9 +5,10 @@ class mcollective (
   $client = false,
 
   # installing packages
-  $manage_packages   = true,
-  $version           = 'present',
-  $ruby_stomp_ensure = 'installed',
+  $manage_packages        = true,
+  $version                = 'present',
+  $ruby_stomp_ensure      = 'installed',
+  $sshkeyauth_gem_version = 'present',
 
   # core configuration
   $confdir          = $mcollective::defaults::confdir,
@@ -104,7 +105,7 @@ class mcollective (
   
   if $securityprovider == 'sshkey' {
     package{'sshkeyauth':
-      ensure   =>  'present',
+      ensure   =>  $sshkeyauth_gem_version,
       provider =>  'puppet_gem',
     }
   }
